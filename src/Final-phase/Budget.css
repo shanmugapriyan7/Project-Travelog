@@ -1,12 +1,20 @@
-.expense-item{
+
+@media (min-width:768px){
+    .expense-item{
     display: grid;
     grid-template-columns: 85% 15%;
     height: 60px;
     width: 95%;
     border-bottom:  rgb(180, 175, 175) 1px solid;
     background-color: rgb(255, 255, 255);
-    
+    }
 
+
+.addexpbox input{
+    width: 95%;
+    height: 50px;
+    border-radius: 20px;
+    
 }
 .description-Icon{
     display: grid;
@@ -19,4 +27,123 @@
     text-align: center;
     color: white;
     background-color: rgb(39, 78, 112);
+}
+.budget-planner{
+    padding: 50px;
+}
+.Add-expense{
+    background-color: white;
+    width: 450px;
+    height: 400px;
+}
+.cancel-expense{
+    width: 20px;
+    margin-left: 80%;
+}
+.addexbutton{
+    width: 95%;
+    background-color:rgb(234, 101, 13);
+    height: 50px;
+}
+.budget-expense{
+    margin-top: 50px;
+}
+.ex-head {
+    padding: 40px;
+    font-size: 30px;
+    font-weight: bold;
+    
+    }
+    .addexpbox input,
+.addexpbox select{
+    width: 95%;
+    border: rgb(186, 186, 186) 2px solid;
+    height: 50px;
+    border-radius: 20px;
+}
+}
+
+
+
+
+
+@media (max-width:768px){
+    .expense-item{
+    display: grid;
+    grid-template-columns: 80% 20%;
+    height: 60px;
+    width: 95%;
+    
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+padding-bottom: 50px;
+}
+.expense-description{
+    padding-bottom:20px;
+   
+    border-bottom:  rgb(180, 175, 175) 1px solid;
+}
+.cancel-expense{
+    width: 20px;
+    margin-left: 80%;
+}
+.budget-planner{
+    padding: 30px;
+}
+.budget-expense{
+    height: fit-content;
+}
+.description-Icon{
+    display: grid;
+    grid-template-columns: 25% 75%;
+}
+.description-title{
+    height: 60px;
+    width: 160px;
+    overflow-y: auto;
+}
+.expense-category1{
+    font-size: 35px;
+    border-radius: 60px;
+   
+    width: 60px;
+    height: 60px;
+    text-align: center;
+    color: white;
+    background-color: rgb(39, 78, 112);
+}
+.Add-expense{
+    background-color: rgb(255, 255, 255);
+    width: 370px;
+    height: 400px;
+    padding-left:20px;
+}
+.addexpbox input,
+.addexpbox select{
+    width: 95%;
+    border: rgb(186, 186, 186) 2px solid;
+    height: 50px;
+    border-radius: 20px;
+}
+.addexbutton{
+    width: 95%;
+    background-color:rgb(234, 101, 13);
+    height: 50px;
+}
+.ex-head {
+    padding: 13px;
+    font-size: 30px;
+    font-weight: bold;
+    
+    }
+    .expense-list{
+        padding-left:10px ;
+    }
+    .remove-expense{
+        border: none;
+        width: 30px;
+        margin-left: 10px;
+        background-color: rgb(255, 255, 255);
+        color: rgb(116, 116, 116);
+    }
 }

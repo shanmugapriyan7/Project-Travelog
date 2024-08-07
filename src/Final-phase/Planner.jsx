@@ -1,18 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
-import "../Final-phase/Planner.css"; 
+import "../Final-phase/Planner.css"; // Ensure this CSS is updated
 import "boxicons/css/boxicons.min.css";
-import { MapContainer, TileLayer, Marker, useMap } from "react-leaflet";
+
 import axios from "axios";
 import { debounce } from "lodash";
 
-import App from "../App";
 import logo from "..//assets/travelog-high-resolution-logo-transparent.png";
 import Budget from "./Budget";
 import ItineraryPlanner from "./ItinearyPlanner";
 import { NavLink } from "react-router-dom";
 import MapComponent from "./MapComponent";
-
-
+// Component to change the view of the map
 
 const Planner = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -33,7 +31,7 @@ const Planner = () => {
   const [selectAddExpense, setSelectAddExpense] = useState(false);
 
   const [selectEditButton, setSelectEditButton] = useState(false);
-  const query = "London";
+  const query = "Hawaii";
 
   const [budgetAmount, setBudgetAmount] = useState(0);
 
@@ -155,6 +153,10 @@ const Planner = () => {
     setHeading(event.target.innerText);
     setIsEditing(false);
   };
+  const [mapView,setMapView]=useState(false);
+  const handlemap=()=>{
+    setMapView(true);
+  }
 
   return (
     <>
@@ -182,7 +184,7 @@ const Planner = () => {
         </div>
         <div className="navbox3" style={{}}>
           <div className="navbutton">
-            <button className="nav-home" >
+            <button className="nav-home">
               <i class="bx bx-images"></i>
             </button>
           </div>
@@ -199,9 +201,6 @@ const Planner = () => {
         </div>
       </div>
 
-      <div className="select-nav-bar" onClick={() => setIsOpen2(!isOpen2)}>
-        menu
-      </div>
 
       {selectMenu && (
         <div className="select-main-container">
@@ -284,14 +283,15 @@ const Planner = () => {
       )}
 
       <div className="app-container">
-        <button
+        <div
           className={`menu-btn ${isOpen ? "hidden" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <i className="bx bx-menu"></i>
-        </button>
+    <i class='bx bxs-right-arrow-alt' ></i>
+        </div>
+        
         <div className={`sidebar ${isOpen ? "open" : ""}`}>
-          <button className="close-btn" onClick={() => setIsOpen(false)}>
+          <button className="close-btn" onClick={() => setIsOpen(false)} style={{color:'black'}}>
             &times;
           </button>
 
@@ -332,7 +332,7 @@ const Planner = () => {
                   marginTop: "10px",
                   color: "white",
                   overflowY: "auto",
-                  height: "400px",
+                
                 }}
                 className="Itineary-scroll"
               >
@@ -343,14 +343,15 @@ const Planner = () => {
                         key={index}
                         id={`date-${index}`}
                         style={{ padding: "10px", color: "grey" }}
-                      
-                      >  <a
-                      key={index}
-                      href={`#date-heading-${index}`} 
-                      style={{ color: "grey", textDecoration: "none" }} 
-                    >
-                      {formatDate(date)}
-                    </a>
+                      >
+                        {" "}
+                        <a
+                          key={index}
+                          href={`#date-heading-${index}`} // Corrected href to match the id
+                          style={{ color: "grey", textDecoration: "none" }} // Use <a> for clickable links
+                        >
+                          {formatDate(date)}
+                        </a>
                       </div>
                     ))}
                   </div>
@@ -368,16 +369,18 @@ const Planner = () => {
                 textAlign: "center",
                 fontSize: "25px",
                 fontWeight: "bold",
-                cursor:'pointer'
+                cursor: "pointer",
               }}
               className="expense-sidebar-button"
-           href="#expense"
+              href="#expense"
             >
               Expenses
             </div>
           </div>
         </div>
 
+        
+    
         <div className="full-body">
           <div className="content-section" style={{}}>
             <div className="headimage-container">
@@ -436,22 +439,21 @@ const Planner = () => {
 
             <div className="itineary-budget">
               <ItineraryPlanner />
-              <Budget id="expense"/>
+              <Budget id="expense" />
 
 
 
-              <div
-                className="planner-footer"
-                style={{ height: "50px", padding: "50px 50px 50px 100px" }}
-              >
+
+              <div className="planner-footer">
                 Need help or have suggestions? Visit help.travelog.com<br></br>
-                Or get in touch with the travelog team at support@travelog.com
+                Or get in touch with the travelog team at support@travellog.com
               </div>
             </div>
           </div>
 
-<MapComponent/>
-       
+          <MapComponent className={`map-full ${mapView ? "hidden" : "no"}`}/>
+
+
         </div>
       </div>
     </>

@@ -38,10 +38,19 @@ const MapComponent = () => {
       debouncedFetchLocation(search);
     }
   }, [search, debouncedFetchLocation]);
+  const [mapView,setMapView]=useState(false);
+  const handlemap=()=>{
+    setMapView(true);
+  }
+  return (<>
+    <div className="select-nav-bar" onClick={() => setMapView(!mapView)}>
+    <i class='bx bxs-map' ></i>    Map view
+    </div>
 
-  return (
-    <div className="map-container">
+    <div className={`map-full ${mapView ? "hidden" : "no"}`}>
+       
     <div>
+
       <input
         type="text"
         value={search}
@@ -72,10 +81,11 @@ const MapComponent = () => {
 
         style={{
           height: "800px",
-          width: "50%",
+         
           position: "fixed",
           marginTop: "-10px",
         }}
+        className="mapContainer"
 
       >
         <ChangeView center={position} />
@@ -87,6 +97,7 @@ const MapComponent = () => {
       </MapContainer>
     </div>
   </div>
+  </>
   );
 };
 

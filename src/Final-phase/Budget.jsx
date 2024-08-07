@@ -103,7 +103,7 @@ const Budget = () => {
 
   return (
     <>
-      <div className="budget-planner " style={{padding:'50px'}} id="expense">
+      <div className="budget-planner "id="expense">
         <div className="budget-header">
           <div className="budget-h1">
             <h1>Budgeting</h1>
@@ -177,11 +177,12 @@ const Budget = () => {
             </div>
           </div>
         </div>
+        <br></br>
         <div className="budget-expense" style={{ paddingBottom: '100px' }}>
-          <div className="expenses header" style={{ paddingLeft: '50px' }}>
-            <h1>Expenses</h1>
+          <div className="expenses-header" >
+            <span className='ex-head'>Expenses</span>
           </div>
-          <div className="expense-list" style={{ paddingLeft: '40px' }}>
+          <div className="expense-list" style={{  }}>
             {expenses.map((expense, index) => (
               <div key={index} className="expense-item" style={{ paddingTop: '20px' }}>
                 <div className="expense-description">
@@ -199,7 +200,7 @@ const Budget = () => {
                 <div className="expense-amount">
                   $ {expense.amount}
                   <button className="remove-expense" onClick={() => handleRemoveExpense(index)}>
-                  Remove
+                  <i class='bx bx-trash'></i>
                 </button>
                 </div>
                
@@ -215,17 +216,12 @@ const Budget = () => {
         <div className="Add-expense-background">
           <div
             className="Add-expense"
-            style={{
-              backgroundColor: 'white',
-              width: '450px',
-              height: '400px',
-            }}
+           
           >
             <button
               className="cancel-expense"
               style={{
-                width: '20px',
-                marginLeft: '90%',
+               
                 border:'none',
                 backgroundColor:'white',
                 cursor:'pointer'
@@ -249,7 +245,7 @@ const Budget = () => {
               <input
                 type="number"
                 className="amountSelector"
-                style={{ width: '95%' ,height:'50px',borderRadius:'20px'}}
+             
                 placeholder="Enter amount"
                 value={newExpenseAmount}
                 onChange={(e) => setNewExpenseAmount(e.target.value)}
@@ -258,7 +254,7 @@ const Budget = () => {
             <div className="addexpbox" >
               <select
                 className="expense-category"
-                style={{ width: '95%' ,height:'50px',borderRadius:'20px'}}
+              
                 value={newExpenseCategory}
                 onChange={(e) => setNewExpenseCategory(e.target.value)}
               >
@@ -281,7 +277,7 @@ const Budget = () => {
               />
             </div>
             <div className="addexpbox">
-              <button className="addexbutton" onClick={handleSaveExpense}  style={{ width: '95%' ,height:'50px',borderRadius:'20px'}} >
+              <button className="addexbutton" onClick={handleSaveExpense}  >
                 <span style={{ marginLeft: '160px'}}>Save</span>
               </button>
             </div>

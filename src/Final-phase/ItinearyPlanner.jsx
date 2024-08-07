@@ -111,7 +111,7 @@ const ItineraryPlanner = (compactView ) => {
   return (
     <div className="itinerary-planner">
       <div className="itinerary-heading">
-        <h1>Itinerary</h1>
+        <span className="itinerary-heading1">Itinerary</span>
         <div className="date-range-label">
           <i className="bx bxs-calendar"></i>{" "}
           {`${formatDate2(startDate)} - ${formatDate2(endDate)}`}

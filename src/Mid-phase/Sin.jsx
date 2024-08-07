@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "../Mid-phase/Sin.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "" });
-  const [passwordLengthValid, setPasswordLengthValid] = useState(true);
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let valid = true;
@@ -36,7 +36,6 @@ const SignInPage = () => {
     const value = e.target.value;
     setEmail(value);
 
-    // Check email validity
     if (/\S+@\S+\.\S+/.test(value)) {
       setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
     } else if (!value) {
@@ -56,10 +55,6 @@ const SignInPage = () => {
     const value = e.target.value;
     setPassword(value);
 
-    
-    setPasswordLengthValid(value.length >= 8);
-
-    
     if (value.length >= 8) {
       setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
     } else if (!value) {
@@ -79,56 +74,58 @@ const SignInPage = () => {
     e.preventDefault();
     if (validateForm()) {
       alert("Sign-in successful");
-      
-    } else if (password.length < 8) {
+      navigate("/");
+    } else {
       alert(
-        "Please ensure your password is at least 8 characters long and also valid email ID is required "
+        "Please ensure your email is valid and your password is at least 8 characters long"
       );
     }
   };
 
   return (
     <div className="sin-body">
-    <div className="sign-in-page">
-      <div className="sign-in-container">
-        <div className="sign-in-header">
-          <h1>Welcome Back</h1>
-          <p>Sign in to discover and plan your next adventure!</p>
+      <div className="sign-in-page">
+        <div className="sign-in-container">
+          <div className="sign-in-header">
+            <h1>Welcome Back</h1>
+            <p>Sign in to discover and plan your next adventure!</p>
+          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Enter your email"
+              />
+              {errors.email && <p className="error">{errors.email}</p>}
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+                placeholder="Enter your password"
+              />
+              {errors.password && <p className="error">{errors.password}</p>}
+            </div>
+            <div className="button-container1">
+              <button type="submit" className="sign-in-button1">
+                Sign In
+              </button>
+              <NavLink to="/Signup">
+                <button type="button" className="forgot-password-button">
+                  Create Account
+                </button>
+              </NavLink>
+            </div>
+          </form>
         </div>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="email">Email:</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={handleEmailChange}
-              placeholder="Enter your email"
-            />
-            {errors.email && <p className="error">{errors.email}</p>}
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password:</label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={handlePasswordChange}
-              placeholder="Enter your password"
-            />
-            {errors.password && <p className="error">{errors.password}</p>}
-          </div>
-          <div className="button-container1">
-           <NavLink to="/"> <button type="submit" className="sign-in-button1">
-              Sign In
-            </button></NavLink>
-      <NavLink to="/Signup">     <button type="button" className="forgot-password-button">
-              create Account
-            </button></NavLink> 
-          </div>
-        </form>
       </div>
-    </div>
     </div>
   );
 };

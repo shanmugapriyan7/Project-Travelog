@@ -1,4 +1,5 @@
-.selector-body{
+
+.selector-body {
   height: fit-content;
   color: #000000;
   margin: 0;
@@ -7,23 +8,19 @@
   background: linear-gradient(#C8D0F1); 
 }
 
-
 .selector-body {
-padding: 7.8%;
+  padding: 7.8%;
   align-items: center;
   justify-content: center;
-    background: url("https://wallpapercave.com/wp/wp12257228.jpg") no-repeat
-    center center fixed;
+  background: url("https://wallpapercave.com/wp/wp12257228.jpg") no-repeat center center fixed;
   background-size: cover;
 }
 
 
-.container1
- {
-  min-width: 600px; 
-  width: 80%;
+.container1 {
+  width: 100%;
   max-width: 800px; 
-  margin-left: 20%;
+  margin: auto;
   padding: 30px; 
   background-color: #dddddde7;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
@@ -31,14 +28,12 @@ padding: 7.8%;
   color: #0c0c0c;
   position: relative;
   border: 1px solid #ddd; 
- 
   background-size: contain;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
-.container1
- h2 {
+.container1 h2 {
   text-align: center;
   color: #000000; 
   font-size: 28px;
@@ -50,21 +45,19 @@ padding: 7.8%;
   margin-bottom: 25px; 
 }
 
-.container1
- label {
+.container1 label {
   display: block;
   margin-bottom: 8px;
   color: #000000;
   cursor: pointer; 
 }
 
-.container1
- input[type="text"] {
+
+.container1 input[type="text"] {
   width: 100%;
   padding: 12px;
   color: #070707;
   margin-top: 5px;
- 
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 30px; 
@@ -75,8 +68,7 @@ padding: 7.8%;
   background-color: #08080838; 
 }
 
- .container1
-  input[type="text"]:focus {
+.container1 input[type="text"]:focus {
   border-color: #007bff;
   outline: none;
   box-shadow: 0 0 8px rgba(0, 123, 255, 0.3); 
@@ -92,9 +84,9 @@ padding: 7.8%;
   width: 100%;
 }
 
+
 .calendar {
   position: absolute;
-  
   left: 50%;
   transform: translateX(-50%);
   z-index: 1000;
@@ -110,7 +102,6 @@ padding: 7.8%;
   background-color: white;
   animation: pulsate 1s ease-in-out;
 }
-
 
 .react-calendar {
   border: none; 
@@ -135,19 +126,6 @@ padding: 7.8%;
   animation: pulsate 1s ease-in-out;
 }
 
-
-@media (max-width: 768px) {
-  .container1
-   {
-    min-width: 90%;
-    max-width: 100%;
-    padding: 20px; 
-  }
-
-  .calendar {
-    max-width: 90%; 
-  }
-}
 
 .start-planning-button {
   display: inline-block;
@@ -178,7 +156,7 @@ padding: 7.8%;
   justify-content: center;
 }
 
-/* Invite box styling */
+
 .invite-box {
   display: flex;
   align-items: center;
@@ -211,12 +189,78 @@ padding: 7.8%;
   background-color: #0056b3;
 }
 
- .container1
-  h5:hover{
+.container1 h5:hover {
   color: #0056b3;
 }
-.invite-box{
-   border-color: #007bff;
-    outline: none;
-   box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+
+.invite-box {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+
+@media (max-width: 1200px) {
+  .selector-body {
+    padding: 10%;
+  }
+  .container1 {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .container1 {
+    min-width: 90%;
+    max-width: 100%;
+    padding: 20px;
+  }
+
+  .calendar {
+    max-width: 90%;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .invite-box {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .invite-box input[type="email"] {
+    margin-bottom: 10px;
+    margin-right: 0;
+  }
+
+  .start-planning-button {
+    width: 100%;
+    padding: 12px 0;
+  }
+
+  .button {
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container1 {
+    padding: 15px;
+  }
+
+  .container1 h2 {
+    font-size: 24px;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .start-planning-button {
+    font-size: 14px;
+    padding: 10px 0;
+  }
 }
