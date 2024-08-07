@@ -1,11 +1,9 @@
+/* General Styles */
 .signup-body {
-  background: url("https://wallpapercave.com/wp/wp13250940.jpg") no-repeat
-    center center fixed;
-    margin-top: -150px;
+  background: url("https://wallpapercave.com/wp/wp13250940.jpg") no-repeat center center fixed;
   background-size: cover;
   padding-top: 50px;
   padding-bottom: 1px;
-  
 }
 
 .create-account {
@@ -20,7 +18,6 @@
   box-sizing: border-box;
   animation: fadeIn 1s ease-out;
 }
-
 
 .create-account h2 {
   text-align: center;
@@ -44,7 +41,6 @@
   transition: color 0.3s ease;
 }
 
-
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
@@ -67,14 +63,12 @@
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-
 .checkbox-container {
   display: flex;
   align-items: center;
   font-size: 16px;
   animation: fadeInUp 1s ease-out;
 }
-
 
 .error {
   border-color: #dc3545;
@@ -89,14 +83,12 @@
   animation: fadeIn 0.5s ease-out forwards;
 }
 
-
 .button-group1 button[type="submit"],
 .button-group1 button[type="button"] {
-  width: 100%; 
-  max-width: 250px; 
-  padding: 12px;
+  width: 250px; 
+  max-width: 250px; /* Fixed width for buttons */
+  padding: 15px;
   background-color: darkseagreen;
- 
   color: white;
   border: none;
   border-radius: 5px;
@@ -106,13 +98,13 @@
   animation: pulse 2s infinite;
   display: block; 
 }
+
 .button-group1 button[type="submit"]:hover,
 .button-group1 button[type="button"]:hover {
   background-color: cadetblue;
   transform: translateY(-2px);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
-
 
 .button-group1 {
   display: flex;
@@ -127,9 +119,6 @@
 .create-account-button:hover {
   background-color: #0056b3; 
 }
-
-
-
 
 .form-button:hover {
   transform: scale(1.05);
@@ -196,4 +185,53 @@
   }
 }
 
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+  .create-account {
+    width: 90%;
+    margin-top: 100px;
+    padding: 15px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    font-size: 14px;
+    padding: 10px;
+  }
 
+  .create-account h2 {
+    font-size: 20px;
+  }
+
+  .button-group1 button[type="submit"],
+  .button-group1 button[type="button"] {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .create-account {
+    width: 100%;
+    margin-top: 50px;
+    padding: 10px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="password"] {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .create-account h2 {
+    font-size: 18px;
+  }
+
+  .button-group1 button[type="submit"],
+  .button-group1 button[type="button"] {
+    font-size: 12px;
+    padding: 10px;
+  }
+}

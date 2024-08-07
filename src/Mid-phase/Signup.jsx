@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "../Mid-phase/Signup.css"; // Import your CSS file
-import { NavLink } from "react-router-dom";
+import "../Mid-phase/Signup.css"; 
+import { NavLink, useNavigate } from "react-router-dom";
+
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -12,6 +13,7 @@ const CreateAccount = () => {
 
   const [formErrors, setFormErrors] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -94,107 +96,108 @@ const CreateAccount = () => {
     const errors = validate();
     if (Object.keys(errors).length === 0) {
       setSubmitted(true);
+      alert("Account created successfully!");
+      navigate("/Sin"); 
     } else {
       setFormErrors(errors);
     }
   };
 
   return (
-      <div className="signup-body" >
-    <div className="create-account">
-      {submitted ? (
-        <h2>Account created successfully!</h2>
-      ) : (
-        <form onSubmit={handleSubmit} noValidate>
-          <h2>Create Account</h2>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              value={formData.username}
-              onChange={handleChange}
-              className={formErrors.username ? "error" : ""}
-            />
-            {formErrors.username && (
-              <span className="error-message">{formErrors.username}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={formErrors.email ? "error" : ""}
-              />
-            {formErrors.email && (
-              <span className="error-message">{formErrors.email}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={formErrors.password ? "error" : ""}
-              />
-            {formErrors.password && (
-              <span className="error-message">{formErrors.password}</span>
-            )}
-          </div>
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              id="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              className={formErrors.confirmPassword ? "error" : ""}
-              />
-            {formErrors.confirmPassword && (
-              <span className="error-message">
-                {formErrors.confirmPassword}
-              </span>
-            )}
-          </div>
-          <div className="form-group">
-            <label htmlFor="acceptTerms" className="checkbox-container">
+    <div className="signup-body">
+      <div className="create-account">
+        {submitted ? (
+          <h2>Account created successfully!</h2>
+        ) : (
+          <form onSubmit={handleSubmit} noValidate>
+            <h2>Create Account</h2>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
               <input
-                type="checkbox"
-                name="acceptTerms"
-                id="acceptTerms"
-                checked={formData.acceptTerms}
+                type="text"
+                name="username"
+                id="username"
+                value={formData.username}
                 onChange={handleChange}
+                className={formErrors.username ? "error" : ""}
+              />
+              {formErrors.username && (
+                <span className="error-message">{formErrors.username}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={formErrors.email ? "error" : ""}
+              />
+              {formErrors.email && (
+                <span className="error-message">{formErrors.email}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                value={formData.password}
+                onChange={handleChange}
+                className={formErrors.password ? "error" : ""}
+              />
+              {formErrors.password && (
+                <span className="error-message">{formErrors.password}</span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className={formErrors.confirmPassword ? "error" : ""}
+              />
+              {formErrors.confirmPassword && (
+                <span className="error-message">
+                  {formErrors.confirmPassword}
+                </span>
+              )}
+            </div>
+            <div className="form-group">
+              <label htmlFor="acceptTerms" className="checkbox-container">
+                <input
+                  type="checkbox"
+                  name="acceptTerms"
+                  id="acceptTerms"
+                  checked={formData.acceptTerms}
+                  onChange={handleChange}
                 />
-              I accept the terms and conditions
-            </label>
-            {formErrors.acceptTerms && (
-              <span className="error-message">{formErrors.acceptTerms}</span>
-            )}
-          </div>
-          
-          <div className="button-group1">
-         <NavLink to="/" style={{textDecoration:'none'}}>   <button type="submit" className="form-button">
-              Create Account
-            </button></NavLink>
-          <NavLink to="/Sin" style={{textDecoration:'none'}}>  <button type="button" className=" signin-button">
-              Sign In
-            </button></NavLink>
-          </div>
-          
-        </form>
-      )}
+                I accept the terms and conditions
+              </label>
+              {formErrors.acceptTerms && (
+                <span className="error-message">{formErrors.acceptTerms}</span>
+              )}
+            </div>
+            <div className="button-group1">
+              <button type="submit" className="form-button">
+                Create Account
+              </button>
+              <NavLink to="/Sin" style={{ textDecoration: "none" }}>
+                <button type="button" className="signin-button">
+                  Sign In
+                </button>
+              </NavLink>
+            </div>
+          </form>
+        )}
+      </div>
     </div>
-    </div>
-      
   );
 };
 
