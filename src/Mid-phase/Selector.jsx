@@ -1,10 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import "../Mid-phase/Selector.css";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
+import { AppContext } from "../Final-phase/AppContext";
+
 const CalendarComponent = () => {
   const [dateRange, setDateRange] = useState([null, null]);
   const [showCalendar, setShowCalendar] = useState(false);
@@ -14,6 +16,11 @@ const CalendarComponent = () => {
 
   const calendarRef = useRef(null);
   const dateInputRef = useRef(null);
+  const { place, setPlace } = useContext(AppContext);
+  const { startdate, setStartdate } = useContext(AppContext);
+  const { enddate, setEnddate } = useContext(AppContext);
+
+  const navigate = useNavigate();
 
   const handleClickOutside = (event) => {
     if (
@@ -42,9 +49,11 @@ const CalendarComponent = () => {
     const [start, end] = dates;
     if (calendarView === "start") {
       setDateRange([start, dateRange[1]]);
+      setStartdate(start); // Store start date in context
       setCalendarView("end");
     } else {
       setDateRange([dateRange[0], end]);
+      setEnddate(end); // Store end date in context
       setShowCalendar(false);
       setCalendarView("start");
     }
@@ -68,74 +77,91 @@ const CalendarComponent = () => {
     return `${startDateStr} | ${endDateStr}`;
   };
 
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Prevent form submission
+    // Perform any necessary validation or state updates here
+    navigate("/Planner"); // Navigate to the Planner route
+  };
+
   return (
     <>
-    <Navbar/>
-    <div className="selector-body">
-      <div className="container1">
-        <h2>Plan a New Trip</h2>
-        <div className="form-group">
-          <label htmlFor="destination">Where to?</label>
-          <input
-            type="text"
-            id="destination"
-            placeholder="e.g. Paris, Hawaii, Japan"
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="dates">Dates :</label>
-          <div className="date-picker">
-            <input
-              type="text"
-              id="dates"
-              ref={dateInputRef}
-              value={formattedDateRange()}
-              onClick={handleInputClick}
-              readOnly
-            />
-          </div>
-        </div>
-        {showCalendar && (
-          <div className="calendar" ref={calendarRef}>
-            <Calendar
-              selectRange
-              value={dateRange}
-              onChange={handleDateChange}
-              minDate={new Date()}
-            />
-          </div>
-        )}
-        <div className="form-group">
-          <label
-            htmlFor="invite"
-            onClick={() => setShowInviteBox(!showInviteBox)}
-          >
-            <h5>+ Invite Tripmates</h5>
-          </label>
-          {showInviteBox && (
-            <div className="invite-box">
+      <Navbar />
+      <div className="selector-body">
+        <div className="container1">
+          <h2>Plan a New Trip</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label htmlFor="destination">Where to?</label>
               <input
-                type="email"
-                id="invite"
-                placeholder="Invite friend"
-                value={inviteEmail}
-                onChange={handleInviteChange}
+                type="text"
+                id="destination"
+                placeholder="e.g. Paris, Hawaii, Japan"
+                value={place}
+                onChange={(e) => setPlace(e.target.value)}
+                required
               />
-              <button onClick={handleSendInvite} className="send-invite-button">
-                Send Invite
-              </button>
             </div>
-          )}
+            <div className="form-group">
+              <label htmlFor="dates">Dates :</label>
+              <div className="date-picker">
+                <input
+                  type="text"
+                  id="dates"
+                  ref={dateInputRef}
+                  value={formattedDateRange()}
+                  onClick={handleInputClick}
+                  readOnly
+                  required
+                />
+              </div>
+            </div>
+            {showCalendar && (
+              <div className="calendar" ref={calendarRef}>
+                <Calendar
+                  selectRange
+                  value={dateRange}
+                  onChange={handleDateChange}
+                  minDate={new Date()}
+                />
+              </div>
+            )}
+            <div className="form-group">
+              <label
+                htmlFor="invite"
+                onClick={() => setShowInviteBox(!showInviteBox)}
+              >
+                <h5>+ Invite Tripmates</h5>
+              </label>
+              {showInviteBox && (
+                <div className="invite-box">
+                  <input
+                    type="email"
+                    id="invite"
+                    placeholder="Invite friend"
+                    value={inviteEmail}
+                    onChange={handleInviteChange}
+                    required
+                  />
+                  <button
+                    onClick={handleSendInvite}
+                    className="send-invite-button"
+                  >
+                    Send Invite
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="button">
+              <center>
+                <button className="start-planning-button" type="submit">
+                  Start Planning
+                </button>
+              </center>
+            </div>
+          </form>
         </div>
       </div>
-      <div className="button">
-        <center>
-       <NavLink to="/Planner">   <button className="start-planning-button">Start Planning</button></NavLink>
-        </center>
-      </div>
-      
-    </div>
-    <Footer/>
+      <Footer />
     </>
   );
 };

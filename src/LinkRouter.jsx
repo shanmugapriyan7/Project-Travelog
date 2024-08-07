@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import App from './App';
+
 import Planner from './Final-phase/Planner';
 import Signup from './Mid-phase/Signup';
 import Sin from './Mid-phase/Sin';
@@ -9,10 +9,11 @@ import ItineraryPlanner from './Final-phase/ItinearyPlanner';
 
 import Component from './Components/Component';
 import Hotel from './Components/Hotels/Hotel';
+import { AppProvider } from './Final-phase/AppContext';
 const LinkRouter = () => {
   return (
     <div>
-
+<AppProvider>
 <BrowserRouter>
 <Routes>
 <Route path='/' element=<Component/> >
@@ -29,7 +30,7 @@ const LinkRouter = () => {
 </Route>
 </Routes>
 </BrowserRouter>
-
+</AppProvider>
     </div>
   )
 }
