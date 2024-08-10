@@ -657,6 +657,7 @@
    
     z-index: 1000000;
   transition: 2s;
+ 
     overflow-y: hidden;
   display: none;
   }

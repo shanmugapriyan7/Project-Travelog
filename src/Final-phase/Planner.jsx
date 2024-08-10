@@ -139,8 +139,15 @@ const Planner = () => {
     setHeading(event.target.innerText);
     setIsEditing(false);
   };
+
+  const [mapView,setMapView]=useState(true);
+  const handlemap=()=>{
+    setMapView(true);
+  }
+
   const [mapView,setMapView]=useState(false);
  
+
 
   return (
     <>
