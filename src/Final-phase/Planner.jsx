@@ -167,16 +167,16 @@ const Planner = () => {
           </div>
         </div>
         <div className="navbox3" style={{}}>
-          <div className="navbutton">
+       <abbr title="Image view">  <div className="navbutton">
             <button className="nav-home" onClick={handleCompactView1}>
               <i class="bx bx-images" ></i>
             </button>
-          </div>
+          </div></abbr> 
           <div className="navbutton1">
-            <button className="nav-home" onClick={handleCompactView}>
+         <abbr title="compact view"> <button className="nav-home" onClick={handleCompactView}>
               <i class="bx bx-menu" ></i>
-            </button>
-          </div>
+            </button></abbr>
+          </div> 
         </div>
         <div className="navbox4" style={{}}>
           <button className="nav-download">

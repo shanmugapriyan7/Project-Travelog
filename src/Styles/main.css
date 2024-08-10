@@ -1,8 +1,4 @@
-
-
-
 .navbar1 {
-  
   background-color: #207b926a;
   color: #0e0101;
   padding: 4px 10%;
@@ -16,13 +12,14 @@
 
   justify-content: space-between;
   align-items: center;
-  
-  
+}
+.active {
+  font-weight: bold;
 }
 
 .logo h1 {
-  margin-right:550px;
-  font-family: 'Ubuntu', sans-serif;
+  margin-right: 550px;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .navbar-toggle {
@@ -39,7 +36,7 @@
 
 .nav-links {
   display: flex;
-  align-items: center; 
+  align-items: center;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -60,12 +57,12 @@
 .nav-links a {
   color: #0e0303;
   text-decoration: none;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .auth-buttons {
   display: flex;
-  align-items: center; 
+  align-items: center;
 }
 
 .auth-buttons button {
@@ -76,7 +73,7 @@
   margin-left: 10px;
   cursor: pointer;
   border-radius: 4px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
 }
 
 .login-btn {
@@ -92,62 +89,61 @@
   background-color: #005bb5;
 }
 
-
 @media (max-width: 768px) {
   .navbar-toggle {
     display: block;
   }
-  
+
   .nav-links {
     display: none;
     position: absolute;
-    top: 60px; 
+    top: 60px;
     right: 20px;
     background-color: #11555c89;
     flex-direction: column;
-    width: 250px; 
+    width: 250px;
     border-radius: 5px;
-    padding: 10px 0; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3); 
-   }
-  
+    padding: 10px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
   .nav-links.active {
     display: flex;
   }
-  
+
   .nav-links ul {
     display: flex;
-    flex-direction: column; 
-    width: 100%; 
+    flex-direction: column;
+    width: 100%;
     padding: 0;
     margin: 0;
   }
-  
+
   .nav-links li {
     margin: 0;
     padding: 10px;
     border-bottom: 1px solid #444;
   }
-  
+
   .nav-links li:last-child {
     border-bottom: none;
   }
-  
+
   .close-btn {
     display: block;
     margin: 10px;
-    font-size: 24px; 
+    font-size: 24px;
     background: none;
     border: none;
     color: #fff;
     cursor: pointer;
   }
-  
+
   .auth-buttons {
     flex-direction: column;
     margin: 10px;
   }
-  
+
   .auth-buttons button {
     margin: 5px 0;
   }
