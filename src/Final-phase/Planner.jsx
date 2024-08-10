@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useContext } from "react";
 import "../Final-phase/Planner.css"; // Ensure this CSS is updated
 import "boxicons/css/boxicons.min.css";
 
@@ -10,6 +10,7 @@ import Budget from "./Budget";
 import ItineraryPlanner from "./ItinearyPlanner";
 import { NavLink } from "react-router-dom";
 import MapComponent from "./MapComponent";
+import { AppContext } from "./AppContext";
 // Component to change the view of the map
 
 const Planner = () => {
@@ -18,7 +19,9 @@ const Planner = () => {
   const [showItinerary, setShowItinerary] = useState(false);
   const [yourPhoto, setYourPhoto] = useState(false);
   const [selectMenu, setSelectMenu] = useState(false);
-
+  const {compactView,setCompactView}=useContext(AppContext);
+  const {place,setPlace}=useContext(AppContext);
+    
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -29,18 +32,29 @@ const Planner = () => {
   const [defaultImageUrl2, setDefaultImageUrl2] = useState("");
   const [defaultImageUrl3, setDefaultImageUrl3] = useState("");
   const [selectAddExpense, setSelectAddExpense] = useState(false);
-
+  
   const [selectEditButton, setSelectEditButton] = useState(false);
-  const query = "Hawaii";
+  const query = place;
 
   const [budgetAmount, setBudgetAmount] = useState(0);
 
+
+
+  const { startdate, setStartdate } = useContext(AppContext);
+  const { enddate, setEnddate } = useContext(AppContext);
+  const startDate = startdate;
+  const endDate = enddate;
+
   /* ----------------*/
+  const handleCompactView = () => {
+    setCompactView(true);
+  };
+  const handleCompactView1 = () => {
+    setCompactView(false);
+  };
 
   /* ----------- date ========*/
-  const startDate = "2024-08-01";
-  const endDate = "2024-08-12";
-
+ 
   const getDateRange = (start, end) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -114,34 +128,6 @@ const Planner = () => {
     setSelectedImageUrl(url);
   };
 
-  const [position, setPosition] = useState([51.505, -0.09]);
-  const [search, setSearch] = useState("");
-
-  const fetchLocation = async (query) => {
-    try {
-      const response = await axios.get(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${query}`
-      );
-      if (response.data.length > 0) {
-        const { lat, lon } = response.data[0];
-        const newPosition = [parseFloat(lat), parseFloat(lon)];
-        setPosition(newPosition);
-      } else {
-        alert("Location not found");
-      }
-    } catch (error) {
-      console.error("Error fetching location data:", error);
-    }
-  };
-
-  const debouncedFetchLocation = useCallback(debounce(fetchLocation, 1000), []);
-
-  useEffect(() => {
-    if (search) {
-      debouncedFetchLocation(search);
-    }
-  }, [search, debouncedFetchLocation]);
-
   const [heading, setHeading] = useState(`Trip To ${query}...`);
   const [isEditing, setIsEditing] = useState(false);
 
@@ -153,10 +139,15 @@ const Planner = () => {
     setHeading(event.target.innerText);
     setIsEditing(false);
   };
+
   const [mapView,setMapView]=useState(true);
   const handlemap=()=>{
     setMapView(true);
   }
+
+  const [mapView,setMapView]=useState(false);
+ 
+
 
   return (
     <>
@@ -184,13 +175,13 @@ const Planner = () => {
         </div>
         <div className="navbox3" style={{}}>
           <div className="navbutton">
-            <button className="nav-home">
-              <i class="bx bx-images"></i>
+            <button className="nav-home" onClick={handleCompactView1}>
+              <i class="bx bx-images" ></i>
             </button>
           </div>
           <div className="navbutton1">
-            <button className="nav-home">
-              <i class="bx bx-menu"></i>
+            <button className="nav-home" onClick={handleCompactView}>
+              <i class="bx bx-menu" ></i>
             </button>
           </div>
         </div>
