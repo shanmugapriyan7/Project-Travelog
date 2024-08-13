@@ -5,6 +5,7 @@ import HotelHelper from './HotelHelper';
 import ResponsiveComponent from './ResponsiveComponent';
 import Navbar from '../Navbar';
 import Footer from '../Footer';
+import CheckHotels from '../CheckHotels';
 
 const Hotel = () => {
   return (

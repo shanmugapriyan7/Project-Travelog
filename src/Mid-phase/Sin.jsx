@@ -5,12 +5,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ email: "", password: "" });
+  const [errors, setErrors] = useState({ email: "", password: "", api: "" });
   const navigate = useNavigate();
 
   const validateForm = () => {
     let valid = true;
-    const newErrors = { email: "", password: "" };
+    const newErrors = { email: "", password: "", api: "" };
 
     if (!email) {
       newErrors.email = "Email is required";
@@ -70,11 +70,33 @@ const SignInPage = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      alert("Sign-in successful");
-      navigate("/");
+      try {
+        const response = await fetch("http://localhost:3006/api/user");
+        const data = await response.json();
+
+        const user = data.find(
+          (user) => user.mail === email && user.password === password
+        );
+
+        if (user) {
+          alert("Sign-in successful");
+          navigate("/");
+        } else {
+          setErrors((prevErrors) => ({
+            ...prevErrors,
+            api: "Invalid email or password",
+          }));
+        }
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          api: "An error occurred while signing in",
+        }));
+      }
     } else {
       alert(
         "Please ensure your email is valid and your password is at least 8 characters long"
@@ -113,6 +135,7 @@ const SignInPage = () => {
               />
               {errors.password && <p className="error">{errors.password}</p>}
             </div>
+            {errors.api && <p className="error">{errors.api}</p>}
             <div className="button-container1">
               <button type="submit" className="sign-in-button1">
                 Sign In

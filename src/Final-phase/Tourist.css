@@ -1,0 +1,73 @@
+/* Tourist.css */
+
+/* Slider container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Card wrapper to display cards in a row */
+  .cards-wrapper {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Each card style */
+  .card {
+    flex: 0 0 auto;
+    width: 300px; /* Adjust width as needed */
+    margin: 0 10px; /* Space between cards */
+    background: #fff; /* Card background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Card shadow */
+    overflow: hidden; /* Hide overflow */
+    text-align: center;
+  }
+  
+  /* Image style */
+  .card-image {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Card name style */
+  .card-name {
+    margin: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333; /* Text color */
+  }
+  
+  /* Navigation buttons */
+  .slide-button {
+    background: #007bff; /* Button background color */
+    border: none;
+    color: #fff; /* Text color */
+    padding: 10px 15px; /* Button padding */
+    cursor: pointer;
+    border-radius: 4px; /* Rounded corners */
+    font-size: 18px;
+    z-index: 1;
+  }
+  
+  /* Disabled button style */
+  .slide-button:disabled {
+    background: #ccc; /* Disabled background color */
+    cursor: not-allowed;
+  }
+  
+  /* Positioning navigation buttons */
+  .slide-button:first-of-type {
+    position: absolute;
+    left: 0;
+  }
+  
+  .slide-button:last-of-type {
+    position: absolute;
+    right: 0;
+  }
+  

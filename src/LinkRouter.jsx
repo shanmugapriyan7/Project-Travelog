@@ -5,11 +5,10 @@ import Planner from './Final-phase/Planner';
 import Signup from './Mid-phase/Signup';
 import Sin from './Mid-phase/Sin';
 import Selector from './Mid-phase/Selector';
-import ItineraryPlanner from './Final-phase/ItinearyPlanner';
-
 import Component from './Components/Component';
 import Hotel from './Components/Hotels/Hotel';
 import { AppProvider } from './Final-phase/AppContext';
+import CheckHotels from './Components/CheckHotels';
 const LinkRouter = () => {
   return (
     <div>
@@ -27,6 +26,8 @@ const LinkRouter = () => {
 <Route path='/Selector' element=<Selector/> >
 </Route>
 <Route path='/Hotel' element=<Hotel/> >
+</Route>
+<Route path='/CheckHotels' element=<CheckHotels/> >
 </Route>
 </Routes>
 </BrowserRouter>

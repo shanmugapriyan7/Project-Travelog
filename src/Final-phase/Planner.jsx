@@ -1,16 +1,13 @@
 import React, { useState, useEffect, useCallback, useContext } from "react";
 import "../Final-phase/Planner.css"; // Ensure this CSS is updated
 import "boxicons/css/boxicons.min.css";
-
-import axios from "axios";
-import { debounce } from "lodash";
-
 import logo from "..//assets/travelog-high-resolution-logo-transparent.png";
 import Budget from "./Budget";
 import ItineraryPlanner from "./ItinearyPlanner";
 import { NavLink } from "react-router-dom";
 import MapComponent from "./MapComponent";
 import { AppContext } from "./AppContext";
+
 // Component to change the view of the map
 
 const Planner = () => {
@@ -145,7 +142,7 @@ const Planner = () => {
     setMapView(true);
   }
 
-  const [mapView,setMapView]=useState(false);
+
  
 
 
@@ -429,6 +426,7 @@ const Planner = () => {
             </div>
 
             <div className="itineary-budget">
+
               <ItineraryPlanner />
               <Budget id="expense" />
 
