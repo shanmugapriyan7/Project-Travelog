@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import '../Styles/Home.css';
 import { NavLink } from 'react-router-dom';
 import SearchBar from './SearchBar';
 import { MdMargin } from 'react-icons/md';
+import { AppContext } from '../Final-phase/AppContext';
 function Home() {
+
+
+
+
   return (
     <div className="main-div" id='home'>
       <div className="sub-div">

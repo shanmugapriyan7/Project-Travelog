@@ -1996,7 +1996,10 @@ font-weight: bold;
   }
   .full-body {
     display: grid;
+
     background-color: #efefef;
+
+    background-color: #ffffffb5;
     grid-template-columns: 58% 42%;
     width: 85%;
     margin-left: 12.9%;

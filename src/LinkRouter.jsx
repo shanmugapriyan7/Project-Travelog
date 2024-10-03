@@ -1,5 +1,6 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 
 import Planner from './Final-phase/Planner';
 import Signup from './Mid-phase/Signup';
@@ -32,8 +33,9 @@ const LinkRouter = () => {
 </Routes>
 </BrowserRouter>
 </AppProvider>
-    </div>
-  )
-}
 
-export default LinkRouter
+    </div>
+  );
+};
+
+export default LinkRouter;
