@@ -59,7 +59,7 @@ const MapComponent = () => {
         style={{
           position: "fixed",
           height: "40px",
-          zIndex: 10010,
+          zIndex: 1000,
           width: "250px",
           borderRadius: "20px",
           marginTop: "10px",

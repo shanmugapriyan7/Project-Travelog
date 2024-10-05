@@ -11,7 +11,8 @@
     font-weight: bold;
   }
   .itinerary-heading1{
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
     font-size: 35px;
   }
   
@@ -150,7 +151,8 @@ border-radius: 10px;
   transition: 2s;
 }
 .itinerary-heading1{
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
   font-size: 35px;
 }
 
