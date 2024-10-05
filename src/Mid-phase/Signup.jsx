@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../Mid-phase/Signup.css"; 
 import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const CreateAccount = () => {
   const [formData, setFormData] = useState({
@@ -91,13 +92,26 @@ const CreateAccount = () => {
     return errors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate();
     if (Object.keys(errors).length === 0) {
-      setSubmitted(true);
-      alert("Account created successfully!");
-      navigate("/Sin"); 
+      try {
+        const response = await axios.post("http://localhost:3006/api/user", {
+          name: formData.username,
+          mail: formData.email,
+          password: formData.password,
+        });
+
+        console.log("Account created successfully:", response.data);
+
+        setSubmitted(true);
+        alert("Account created successfully!");
+        navigate("/Sin");
+      } catch (error) {
+        console.error("Error creating account:", error);
+        alert("Failed to create account.");
+      }
     } else {
       setFormErrors(errors);
     }

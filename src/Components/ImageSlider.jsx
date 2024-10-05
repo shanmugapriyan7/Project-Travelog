@@ -65,7 +65,7 @@ const ImageSlider = () => {
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
-            <img src={image.src} alt={`Travel ${index + 1}`} />
+            <img src={image.src} alt={`Travel ${index + 1}`}  className='slick-image28'/>
             <p>{image.caption}</p>
           </div>
         ))}
