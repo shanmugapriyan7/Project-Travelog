@@ -13,12 +13,8 @@ const ChangeView = ({ center }) => {
 };
 
 const MapComponent = () => {
-  const [position, setPosition] = useState([51.505, -0.09]); 
+  const [position, setPosition] = useState([51.505, -0.09]); // Default position (London)
   const [search, setSearch] = useState('');
-  const [mapView, setMapView] = useState(false);
-
-  // Default place name to be used for initial position
-  const defaultPlace = 'New York City';
 
   const fetchLocation = async (query) => {
     try {
@@ -38,25 +34,18 @@ const MapComponent = () => {
   const debouncedFetchLocation = useCallback(debounce(fetchLocation, 1000), []);
 
   useEffect(() => {
-    // Fetch default location on initial render
-    fetchLocation(defaultPlace);
-  }, []);
-
-  useEffect(() => {
     if (search) {
       debouncedFetchLocation(search);
     }
   }, [search, debouncedFetchLocation]);
-
-  const handleMapToggle = () => {
-    setMapView(!mapView);
-  };
-
-  return (
-    <>
-      <div className="select-nav-bar" onClick={handleMapToggle}>
-        <i className="bx bxs-map"></i> Map view
-      </div>
+  const [mapView,setMapView]=useState(false);
+  const handlemap=()=>{
+    setMapView(true);
+  }
+  return (<>
+    <div className="select-nav-bar" onClick={() => setMapView(!mapView)}>
+    <i class='bx bxs-map' ></i>    Map view
+    </div>
 
     <div className={`map-full ${mapView ? "hidden" : "no"}`}>
        
@@ -70,7 +59,7 @@ const MapComponent = () => {
         style={{
           position: "fixed",
           height: "40px",
-          zIndex: 10010,
+          zIndex: 1000,
           width: "250px",
           borderRadius: "20px",
           marginTop: "10px",
@@ -84,26 +73,31 @@ const MapComponent = () => {
         className="map-search-input"
       />
 
-          <MapContainer
-            center={position}
-            zoom={13}
-            style={{
-              height: '800px',
-              position: 'fixed',
-              marginTop: '-10px',
-            }}
-            className="mapContainer"
-          >
-            <ChangeView center={position} />
-            <TileLayer
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              attribution="&copy; OpenStreetMap contributors"
-            />
-            <Marker position={position}></Marker>
-          </MapContainer>
-        </div>
-      </div>
-    </>
+      <MapContainer
+        center={position}
+        zoom={13}
+
+       
+
+        style={{
+          height: "800px",
+         
+          position: "fixed",
+          marginTop: "-10px",
+        }}
+        className="mapContainer"
+
+      >
+        <ChangeView center={position} />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy;contributors"
+        />
+        <Marker position={position}></Marker>
+      </MapContainer>
+    </div>
+  </div>
+  </>
   );
 };
 

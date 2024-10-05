@@ -7,6 +7,9 @@ import ItineraryPlanner from "./ItinearyPlanner";
 import { NavLink } from "react-router-dom";
 import MapComponent from "./MapComponent";
 import { AppContext } from "./AppContext";
+import Note from "./Note";
+import Tourist from "./Tourist";
+
 // Component to change the view of the map
 
 const Planner = () => {
@@ -136,7 +139,14 @@ const Planner = () => {
     setIsEditing(false);
   };
 
-  
+  const [mapView,setMapView]=useState(true);
+  const handlemap=()=>{
+    setMapView(true);
+  }
+
+
+ 
+
 
   return (
     <>
@@ -418,6 +428,7 @@ const Planner = () => {
               </div>
             </div>
 
+<Tourist/>
             <div className="itineary-budget">
 <Note/>
               <ItineraryPlanner />
