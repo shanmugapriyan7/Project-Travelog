@@ -696,6 +696,12 @@
   background-color: rgb(255, 255, 255);
  
 }
+.select-photo {
+  height: 570px; 
+  overflow-y: auto; 
+  border: 1px solid #ccc; 
+}
+
 
 /* Sidebar --------------------*/
 .menu-btn {
@@ -718,6 +724,7 @@
   display: none;
 }
 .headcontent {
+  
 }
 
 .headcontent h1 {
@@ -833,7 +840,7 @@
 
 .itineary-budget {
   width: 80%;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 .itinerary-planner {
   box-shadow: 10px 10px 10px rgba(222, 221, 221, 0.6);
@@ -855,7 +862,7 @@
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  background-color: #13101084;
+  background-color: #ffffff84;
 }
 
 .nav-bar.hidden {
@@ -1315,7 +1322,7 @@
   }
   .full-body {
     display: grid;
-    background-color: #ffffffb5;
+    background-color: #d5d3d3b5;
     grid-template-columns: 58% 42%;
     width: 85%;
     margin-left: 12.9%;
