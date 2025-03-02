@@ -1,0 +1,122 @@
+/* FeedbackForm.css */
+
+.feed-body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 3% 0 0 0;
+   background-repeat: no-repeat;
+   background-size: cover;
+    background-image: linear-gradient(black ,black,black,rgb(79, 77, 77));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: white;
+}
+
+.feedback-form-container {
+    background-color: rgba(255, 255, 255, 0.241);
+    border-radius: 10px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    max-width: 400px;
+    width: 100%;
+    color: white;
+    animation: fadeInUp 0.5s ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-title {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-labelF {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.form-input,
+.form-textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #aba9a9;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+    border-color: #ff6a00;
+    outline: none;
+}
+
+.star-rating {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.star {
+    cursor: pointer;
+    color: #ccc;
+    transition: color 0.2s;
+}
+
+.star.active {
+    color: #ff6f00;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.submit-button:hover {
+    background-color: #b34500;
+}
+
+@media (max-width: 480px) {
+    .feedback-form-container {
+        padding: 1.5rem;
+    }
+
+    .form-title {
+        font-size: 1.5rem;
+    }
+
+    .form-input,
+    .form-textarea {
+        font-size: 0.9rem;
+    }
+
+    .star {
+        width: 25px;
+        height: 25px;
+    }
+}

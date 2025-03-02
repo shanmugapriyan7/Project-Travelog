@@ -1,10 +1,17 @@
 .features {
-    padding: 20px;
+    padding: 2%;
     text-align: center;
+    z-index: 100;
+    position: relative;
+    background-color: white;
+
   }
   
-  .features h2 {
+  .features h1 {
+    padding: 1%;
     margin-bottom: 20px;
+    color: rgb(4, 37, 95);
+    font-weight: bold;
   }
   
   .features-wrapper {

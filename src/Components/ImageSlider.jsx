@@ -61,6 +61,8 @@ const ImageSlider = () => {
   };
 
   return (
+  <div className="sliderbody">
+    <h1 className='slider-heading'> Your Travel Inspiration Starts Here!✈️</h1>
     <div className="slider-container">
       <Slider {...settings}>
         {images.map((image, index) => (
@@ -70,6 +72,7 @@ const ImageSlider = () => {
           </div>
         ))}
       </Slider>
+    </div>
     </div>
   );
 };

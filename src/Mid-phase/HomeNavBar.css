@@ -1,0 +1,74 @@
+.NavBody{
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    background-color: rgb(255, 255, 255);
+    z-index: 103;
+    display: grid;
+    grid-template-columns: 30% 40% 40%;
+    border-radius: 10px;
+    box-shadow: 5px 15px 10px rgba(128, 128, 128, 0.608);
+    font-family:  Pacifico;
+}
+.NavC1{
+   
+    height: 50px;
+    width: 100%;
+    text-align: center;
+}
+.NavC1 h1{
+    color: rgb(1, 65, 80);
+    font-weight: bold;
+}
+.NavC2{
+   padding-left: 30px;
+    height: 50px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 20% 25% 20%;
+    font-weight: bold;
+    
+}
+.NavC3{
+   
+    height: 50px;
+    width: 100%;
+}
+.NavButton1{
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0);
+    margin-top: 10px;
+    font-weight: bold;
+    color: rgb(1, 90, 40);
+}
+.NavButton2{
+    height: 30px;
+    border: none;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0);
+    color: rgb(1, 90, 40);
+    margin-top: 10px;
+}
+.NavButton3{
+    height: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0);
+    color: rgb(1, 90, 40);
+    margin-top: 10px;
+}
+.NavLogout{
+    height: 30px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: rgba(240, 248, 255, 0);
+    align-items: center;
+    
+    color: rgb(216, 65, 0);
+    margin-top: 10px;
+}

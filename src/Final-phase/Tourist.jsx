@@ -1,11 +1,10 @@
-import React, { useEffect, useState, useRef, useContext } from 'react';
-import Slider from 'react-slick';
-import axios from 'axios';
-import "slick-carousel/slick/slick.css"; 
+import React, { useEffect, useState, useRef } from "react";
+import Slider from "react-slick";
+import axios from "axios";
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { FaChevronDown, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
-import './Tourist.css';
-import { AppContext } from './AppContext';
+import { FaChevronDown, FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import "./Tourist.css";
 
 const Tourist = () => {
   const [touristPlaces, setTouristPlaces] = useState([]);
@@ -13,41 +12,20 @@ const Tourist = () => {
   const [images, setImages] = useState({});
   const [showCards, setShowCards] = useState(true);
   const [expanded, setExpanded] = useState(null);
-  // Default filter to Japan
-  const {place,setPlace}=useContext(AppContext);
-  const [selectedCountry, setSelectedCountry] = useState(place); 
+
   const sliderRef = useRef(null);
 
-  const pexelsApiKey = 'ntfx0m9Bo8eZIomHdsn3NViEaf1vFYtOlcgGPjgr69cCeNak0qFMTARU'; // Replace with your Pexels API key
+  const pexelsApiKey =
+    "ntfx0m9Bo8eZIomHdsn3NViEaf1vFYtOlcgGPjgr69cCeNak0qFMTARU"; // Replace with your Pexels API key
 
-  useEffect(() => {
-    const fetchTouristPlaces = async () => {
-      try {
-        const response = await fetch('http://localhost:3006/api/countries');
-        const data = await response.json();
-
-        // Set tourist places for the selected country
-        const countryData = data.find(country => country.name.toLowerCase() === selectedCountry.toLowerCase());
-        if (countryData) {
-          setTouristPlaces(countryData.touristPlaces);
-          setFilteredPlaces(countryData.touristPlaces);
-
-          // Fetch images for each tourist place
-          countryData.touristPlaces.forEach(place => {
-            fetchImage(place);
-          });
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchTouristPlaces();
-  }, [selectedCountry]);
+  const [data, setData] = useState(null); // State for storing the entire API response
+  const [countryPlace, setCountryPlace] = useState(""); // State for storing the country place name
 
   const fetchImage = async (place) => {
+    if (images[place]) return; // If image is already fetched for this place, don't fetch again.
+
     try {
-      const response = await axios.get('https://api.pexels.com/v1/search', {
+      const response = await axios.get("https://api.pexels.com/v1/search", {
         params: { query: place, per_page: 1 },
         headers: {
           Authorization: pexelsApiKey,
@@ -55,15 +33,29 @@ const Tourist = () => {
       });
 
       if (response.data.photos && response.data.photos.length > 0) {
-        setImages(prevImages => ({
+        setImages((prevImages) => ({
           ...prevImages,
           [place]: response.data.photos[0].src.medium,
         }));
       }
     } catch (error) {
-      console.error('Error fetching image:', error);
+      console.error("Error fetching image:", error);
     }
   };
+
+  useEffect(() => {
+    // Assuming you are fetching some data to populate filteredPlaces
+    // Simulate setting filtered places
+    setFilteredPlaces(["Tokyo", "Kyoto", "Osaka", "Hokkaido"]);
+
+  }, []);
+
+  useEffect(() => {
+    // Fetch images for all filtered places
+    filteredPlaces.forEach((place) => {
+      fetchImage(place);
+    });
+  }, [filteredPlaces]); // Run when filteredPlaces change
 
   const settings = {
     dots: false,
@@ -79,17 +71,17 @@ const Tourist = () => {
           slidesToShow: 2,
           slidesToScroll: 1,
           infinite: true,
-          dots: false
-        }
+          dots: false,
+        },
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
 
   const next = () => {
@@ -110,42 +102,54 @@ const Tourist = () => {
 
   return (
     <>
-    <div className="explore-places">
-      <div className="explorer-body-heading">
-        <span className="toggle-button" onClick={toggleCards}>
-          {showCards ? <FaChevronDown /> : <FaChevronRight />}
-        </span>
-        <span className='tphhh'>Tourist Places</span>
-      </div>
-
-      {showCards && (
-        <div className="tourist-slider">
-          <Slider ref={sliderRef} {...settings}>
-            {filteredPlaces.map((place, index) => (
-              <div key={index} className="card12" onClick={() => handleCardClick(place)}>
-                <div className={`card-body12 ${expanded === place ? 'expanded' : ''}`}>
-                  <div className="image-placeholder12">
-                    {images[place] ? (
-                      <img src={images[place]} alt={place} className='image-in'/>
-                    ) : (
-                      <p>Loading image...</p>
-                    )}
-                  </div>
-                  <span>{place}</span>
-                </div>
-              </div>
-            ))}
-          </Slider>
-
-          <button className="prev-button" onClick={previous}>
-            <FaChevronLeft />
-          </button>
-          <button className="next-button" onClick={next}>
-            <FaChevronRight />
-          </button>
+      <div className="explore-places">
+        <div className="explorer-body-heading">
+          <span className="toggle-button" onClick={toggleCards}>
+            {showCards ? <FaChevronDown /> : <FaChevronRight />}
+          </span>
+          <span className="tphhh">Tourist Places</span>
         </div>
-      )}
-    </div>
+
+        {showCards && (
+          <div className="tourist-slider">
+            <Slider ref={sliderRef} {...settings}>
+              {filteredPlaces.map((place, index) => (
+                <div
+                  key={index}
+                  className="card12"
+                  onClick={() => handleCardClick(place)}
+                >
+                  <div
+                    className={`card-body12 ${
+                      expanded === place ? "expanded" : ""
+                    }`}
+                  >
+                    <div className="image-placeholder12">
+                      {images[place] ? (
+                        <img
+                          src={images[place]}
+                          alt={place}
+                          className="image-in"
+                        />
+                      ) : (
+                        <p>Loading image...</p>
+                      )}
+                    </div>
+                    <span>{place}</span>
+                  </div>
+                </div>
+              ))}
+            </Slider>
+
+            <button className="prev-button" onClick={previous}>
+              <FaChevronLeft />
+            </button>
+            <button className="next-button" onClick={next}>
+              <FaChevronRight />
+            </button>
+          </div>
+        )}
+      </div>
     </>
   );
 };

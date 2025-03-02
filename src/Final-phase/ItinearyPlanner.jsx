@@ -8,7 +8,7 @@ const ItineraryPlanner = () => {
   const { enddate, setEnddate } = useContext(AppContext);
   const startDate = startdate;
   const endDate = enddate;
-  const {compactView}=useContext(AppContext);
+  const { compactView } = useContext(AppContext);
   const formatDate2 = (date) => {
     const options = { month: "numeric", day: "numeric" };
     return new Date(date).toLocaleDateString("en-US", options);
@@ -147,75 +147,70 @@ const ItineraryPlanner = () => {
                   {subheadings[index]}
                 </span>
 
-
-
-                {!compactView &&(
-                <div className="locations-list">
-                  {locations[index].map((location, locIndex) => (
-                    <div key={locIndex} className="location-item">
-                      <div className="location-content">
-                        <div className="location-info">
-                          <div className="location-name">
-                            <span className="location-index">
-                              {locIndex + 1}. {location}
-                            </span>
+                {!compactView && (
+                  <div className="locations-list">
+                    {locations[index].map((location, locIndex) => (
+                      <div key={locIndex} className="location-item">
+                        <div className="location-content">
+                          <div className="location-info">
+                            <div className="location-name">
+                              <span className="location-index">
+                                {locIndex + 1}. {location}
+                              </span>
+                            </div>
+                            <div className="location-details">
+                              <p>Details about {location}...</p>
+                            </div>
                           </div>
-                          <div className="location-details">
-                            <p>Details about {location}...</p>
-                          </div>
+                          {images[`${index}-${locIndex}`] && (
+                            <div className="place-image-container">
+                              <img
+                                src={images[`${index}-${locIndex}`]}
+                                alt="Place"
+                                className="place-image"
+                              />
+                            </div>
+                          )}
                         </div>
-                        {images[`${index}-${locIndex}`] && (
-                          <div className="place-image-container">
-                            <img
-                              src={images[`${index}-${locIndex}`]}
-                              alt="Place"
-                              className="place-image"
-                            />
-                          </div>
-                        )}
+                        <div className="remove-location-button">
+                          <button
+                            onClick={() => removeLocation(index, locIndex)}
+                            className="remove-button"
+                          >
+                            <i className="bx bx-trash"></i>
+                          </button>
+                        </div>
                       </div>
-                      <div className="remove-location-button">
-                        <button
-                          onClick={() => removeLocation(index, locIndex)}
-                          className="remove-button"
-                        >
-                          <i className="bx bx-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
+                    ))}
+                  </div>
                 )}
 
                 {compactView && (
-                <div className="locations-list">
-                  {locations[index].map((location, locIndex) => (
-                    <div key={locIndex} className="location-item">
-                      <div className="location-content">
-                        <div className="location-info">
-                          <div className="location-name">
-                            <span className="location-index">
-                              {locIndex + 1}. {location}
-                            </span>
+                  <div className="locations-list">
+                    {locations[index].map((location, locIndex) => (
+                      <div key={locIndex} className="location-item">
+                        <div className="location-content">
+                          <div className="location-info">
+                            <div className="location-name">
+                              <span className="location-index">
+                                {locIndex + 1}. {location}
+                              </span>
+                            </div>
                           </div>
-                         
                         </div>
-                       
+                        <div className="remove-location-button">
+                          <button
+                            onClick={() => removeLocation(index, locIndex)}
+                            className="remove-button"
+                          >
+                            <i className="bx bx-trash"></i>
+                          </button>
+                        </div>
                       </div>
-                      <div className="remove-location-button">
-                        <button
-                          onClick={() => removeLocation(index, locIndex)}
-                          className="remove-button"
-                        >
-                          <i className="bx bx-trash"></i>
-                        </button>
-                      </div>
-                    </div>
-                  ))}
-                </div>
+                    ))}
+                  </div>
                 )}
-                
+
                 <input
                   type="text"
                   onKeyDown={(e) => handleLocationChange(index, e)}

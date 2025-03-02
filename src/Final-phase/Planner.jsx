@@ -1,16 +1,23 @@
-import React, { useState, useEffect, useCallback, useContext } from "react";
-import "../Final-phase/Planner.css"; // Ensure this CSS is updated
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+  useContext,
+  useRef,
+} from "react";
+import "../Final-phase/Planner.css";
 import "boxicons/css/boxicons.min.css";
 import logo from "..//assets/travelog-high-resolution-logo-transparent.png";
 import Budget from "./Budget";
 import ItineraryPlanner from "./ItinearyPlanner";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import MapComponent from "./MapComponent";
 import { AppContext } from "./AppContext";
 import Note from "./Note";
 import Tourist from "./Tourist";
-
-// Component to change the view of the map
+import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
+import axios from "axios";
 
 const Planner = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,9 +25,9 @@ const Planner = () => {
   const [showItinerary, setShowItinerary] = useState(false);
   const [yourPhoto, setYourPhoto] = useState(false);
   const [selectMenu, setSelectMenu] = useState(false);
-  const {compactView,setCompactView}=useContext(AppContext);
-  const {place,setPlace}=useContext(AppContext);
-    
+  const { compactView, setCompactView } = useContext(AppContext);
+  const { place, setPlace } = useContext(AppContext);
+
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -31,18 +38,56 @@ const Planner = () => {
   const [defaultImageUrl2, setDefaultImageUrl2] = useState("");
   const [defaultImageUrl3, setDefaultImageUrl3] = useState("");
   const [selectAddExpense, setSelectAddExpense] = useState(false);
-  
+
   const [selectEditButton, setSelectEditButton] = useState(false);
-  const query = place;
 
   const [budgetAmount, setBudgetAmount] = useState(0);
-
-
 
   const { startdate, setStartdate } = useContext(AppContext);
   const { enddate, setEnddate } = useContext(AppContext);
   const startDate = startdate;
   const endDate = enddate;
+
+  /** ----------------------------------- */
+  const [data, setData] = useState(null);
+  const [countryPlace, setCountryPlace] = useState("");
+
+  const selectedCountry = countryPlace;
+
+  const query = place;
+
+  /**---------------- */
+  const divRef = useRef(null);
+
+  const handleDownload = () => {
+    if (divRef.current) {
+      html2canvas(divRef.current, { scrollY: -window.scrollY }).then(
+        (canvas) => {
+          const imgData = canvas.toDataURL("image/png");
+          const pdf = new jsPDF("p", "pt", "a4");
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgWidth = 500;
+          const imgHeight = 1600;
+
+          let heightLeft = imgHeight;
+          let position = 0;
+
+          pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+          heightLeft -= pdfHeight;
+
+          while (heightLeft >= 0) {
+            position -= pdfHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, "PNG", 0, position, imgWidth, imgHeight);
+            heightLeft -= pdfHeight;
+          }
+
+          pdf.save("downloaded-div.pdf");
+        }
+      );
+    }
+  };
 
   /* ----------------*/
   const handleCompactView = () => {
@@ -53,7 +98,7 @@ const Planner = () => {
   };
 
   /* ----------- date ========*/
- 
+
   const getDateRange = (start, end) => {
     const startDate = new Date(start);
     const endDate = new Date(end);
@@ -127,7 +172,8 @@ const Planner = () => {
     setSelectedImageUrl(url);
   };
 
-  const [heading, setHeading] = useState(`Trip To ${query}...`);
+  const [heading, setHeading] = useState(`Trip To ${place}...`);
+
   const [isEditing, setIsEditing] = useState(false);
 
   const handleClick = () => {
@@ -139,14 +185,16 @@ const Planner = () => {
     setIsEditing(false);
   };
 
-  const [mapView,setMapView]=useState(true);
-  const handlemap=()=>{
+  const [mapView, setMapView] = useState(true);
+  const handlemap = () => {
     setMapView(true);
-  }
-
-
- 
-
+  };
+  const navigatelogout = useNavigate();
+  const { loginStatus, setLoginStatus } = useContext(AppContext);
+  const handleloginStatus = () => {
+    setLoginStatus(false);
+    navigatelogout("/");
+  };
 
   return (
     <>
@@ -156,7 +204,7 @@ const Planner = () => {
         </div>
         <div className="navbox2" style={{}}>
           <div className="navbutton">
-            <NavLink to="/">
+            <NavLink to="/home">
               {" "}
               <button className="nav-home">
                 <i class="bx bx-home"></i>
@@ -173,24 +221,23 @@ const Planner = () => {
           </div>
         </div>
         <div className="navbox3" style={{}}>
-       <abbr title="Image view">  <div className="navbutton">
+          <div className="navbutton">
             <button className="nav-home" onClick={handleCompactView1}>
-              <i class="bx bx-images" ></i>
+              <i class="bx bx-images"></i>
             </button>
-          </div></abbr> 
+          </div>
           <div className="navbutton1">
-         <abbr title="compact view"> <button className="nav-home" onClick={handleCompactView}>
-              <i class="bx bx-menu" ></i>
-            </button></abbr>
-          </div> 
+            <button className="nav-home" onClick={handleCompactView}>
+              <i class="bx bx-menu"></i>
+            </button>
+          </div>
         </div>
         <div className="navbox4" style={{}}>
-          <button className="nav-download">
-            <i class="bx bxs-download"></i>
+          <button className="nav-download" onClick={handleloginStatus}>
+            <i class="bx bx-log-out"></i>
           </button>
         </div>
       </div>
-
 
       {selectMenu && (
         <div className="select-main-container">
@@ -200,13 +247,7 @@ const Planner = () => {
               <button onClick={() => setSelectMenu(false)}>&times;</button>
             </div>
             <div className="select-buttons">
-              <button
-                onClick={() => setYourPhoto(true)}
-                className={`your-button ${yourPhoto ? "yp" : ""}`}
-                style={{ borderRadius: "10px" }}
-              >
-                Your Photo
-              </button>
+            
               <button
                 onClick={() => setYourPhoto(false)}
                 className={`your-button ${yourPhoto ? "" : "yp"}`}
@@ -235,7 +276,7 @@ const Planner = () => {
                           marginBottom: "10px",
                           borderRadius: "10px",
                           position: "relative",
-                          overflowY:'auto',
+                          overflowY: "auto",
                           cursor: "pointer",
                         }}
                         onClick={() =>
@@ -278,11 +319,15 @@ const Planner = () => {
           className={`menu-btn ${isOpen ? "hidden" : ""}`}
           onClick={() => setIsOpen(!isOpen)}
         >
-    <i class='bx bxs-right-arrow-alt' ></i>
+          <i class="bx bxs-right-arrow-alt"></i>
         </div>
-        
+
         <div className={`sidebar ${isOpen ? "open" : ""}`}>
-          <button className="close-btn" onClick={() => setIsOpen(false)} style={{color:'black'}}>
+          <button
+            className="close-btn"
+            onClick={() => setIsOpen(false)}
+            style={{ color: "black" }}
+          >
             &times;
           </button>
 
@@ -323,7 +368,6 @@ const Planner = () => {
                   marginTop: "10px",
                   color: "white",
                   overflowY: "auto",
-                
                 }}
                 className="Itineary-scroll"
               >
@@ -370,8 +414,6 @@ const Planner = () => {
           </div>
         </div>
 
-        
-    
         <div className="full-body">
           <div className="content-section" style={{}}>
             <div className="headimage-container">
@@ -428,14 +470,13 @@ const Planner = () => {
               </div>
             </div>
 
-<Tourist/>
+        <Tourist/>
             <div className="itineary-budget">
-<Note/>
-              <ItineraryPlanner />
+              <Note />
+              <div ref={divRef}>
+                <ItineraryPlanner />
+              </div>
               <Budget id="expense" />
-
-
-
 
               <div className="planner-footer">
                 Need help or have suggestions? Visit help.travelog.com<br></br>
@@ -444,9 +485,7 @@ const Planner = () => {
             </div>
           </div>
 
-          <MapComponent className={`map-full ${mapView ? "hidden" : "no"}`}/>
-
-
+          <MapComponent className={`map-full ${mapView ? "hidden" : "no"}`} />
         </div>
       </div>
     </>

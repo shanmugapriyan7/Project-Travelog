@@ -97,10 +97,10 @@ const CreateAccount = () => {
     const errors = validate();
     if (Object.keys(errors).length === 0) {
       try {
-        const response = await axios.post("http://localhost:3006/api/user", {
-          name: formData.username,
-          mail: formData.email,
-          password: formData.password,
+        const response = await axios.post("http://localhost:3006/api/ua/signup", {  // Ensure this endpoint is correct
+          name: formData.username, // Ensure this matches your backend field names
+          email: formData.email, // Same as above
+          password: formData.password, // Same as above
         });
 
         console.log("Account created successfully:", response.data);

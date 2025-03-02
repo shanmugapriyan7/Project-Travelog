@@ -1,16 +1,21 @@
 .testimonials {
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3%;
     background-color: #abd2f873;
+    background-color: white;
+
+    position: relative;
+    z-index: 100; 
   }
   
-  .testimonials h2 {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #1a202c;
+  .testimonials h1 {
+    
+   
+    color: #002d54;
   }
   
   .testimonials-container {
+    padding: 2%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;

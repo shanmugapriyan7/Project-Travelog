@@ -1,4 +1,6 @@
-
+.content-section{
+  background-color: rgb(224, 224, 224);
+}
 @media (min-width: 425px ) and (max-width:900px) {
 .full-body{
   background-color: rgb(180, 180, 180);
@@ -39,7 +41,7 @@
     color: white;
   
 
-    background-image:  linear-gradient(to right, rgb(203, 21, 1), rgb(229, 68, 9), rgb(198, 121, 6));
+    background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(229, 68, 9), rgb(198, 121, 6));
     z-index: 1000; 
   }
   .menu-btn i{
@@ -233,11 +235,7 @@
     padding-bottom: 5px;
     font-weight: bold;
     cursor: pointer;
-    background-image: linear-gradient(
-      to right,
-      rgb(164, 68, 0),
-      rgb(247, 138, 30)
-    );
+    background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
   }
   .navbutton1 button {
     height: 30px;
@@ -258,12 +256,7 @@
   }
   .navbox4 button {
     width: 40px;
-    background-image: linear-gradient(
-      to right,
-      rgb(148, 27, 0),
-      rgb(171, 74, 13),
-      rgb(255, 155, 6)
-    );
+        background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
     color: white;
     font-size: 16px;
     border: none;
@@ -930,12 +923,7 @@
   }
   .navbox4 button {
     width: 40px;
-    background-image: linear-gradient(
-      to right,
-      rgb(148, 27, 0),
-      rgb(171, 74, 13),
-      rgb(255, 155, 6)
-    );
+        background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
     color: white;
     font-size: 16px;
     border: none;
@@ -1373,12 +1361,6 @@
   background-color: rgb(255, 255, 255);
  
 }
-.select-photo {
-  height: 570px; 
-  overflow-y: auto; 
-  border: 1px solid #ccc; 
-}
-
 
 /* Sidebar --------------------*/
 .menu-btn {
@@ -1401,7 +1383,6 @@
   display: none;
 }
 .headcontent {
-  
 }
 
 .headcontent h1 {
@@ -1413,7 +1394,7 @@ font-weight: bold;
   cursor: pointer;
 }
 .Itineary-scroll{
-  height: 400px;
+  height: 450px;
 }
 
 .headcontent h1[contenteditable="true"] {
@@ -1519,7 +1500,7 @@ font-weight: bold;
 
 .itineary-budget {
   width: 80%;
-  margin-top: 10px;
+  margin-top: 30px;
 }
 .itinerary-planner {
   box-shadow: 10px 10px 10px rgba(222, 221, 221, 0.6);
@@ -1541,7 +1522,7 @@ font-weight: bold;
   border: none;
   cursor: pointer;
   border-radius: 50%;
-  background-color: #ffffff84;
+  background-color: #13101084;
 }
 
 .nav-bar.hidden {
@@ -1584,11 +1565,7 @@ font-weight: bold;
   padding-bottom: 5px;
   font-weight: bold;
   cursor: pointer;
-  background-image: linear-gradient(
-    to right,
-    rgb(164, 68, 0),
-    rgb(247, 138, 30)
-  );
+  background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
 }
 .navbutton1 button {
   height: 30px;
@@ -1609,12 +1586,7 @@ font-weight: bold;
 }
 .navbox4 button {
   width: 100px;
-  background-image: linear-gradient(
-    to right,
-    rgb(148, 27, 0),
-    rgb(171, 74, 13),
-    rgb(255, 155, 6)
-  );
+  background-image:  linear-gradient(to right, rgb(9, 77, 0), rgb(9, 229, 167), rgb(0, 242, 255));
   color: white;
   font-size: 16px;
   border: none;
@@ -1862,20 +1834,10 @@ font-weight: bold;
 /*  -------------*/
 
 .edit-background-button {
-  background-image: linear-gradient(
-    to right,
-    rgb(148, 0, 0),
-    rgb(255, 119, 0),
-    rgb(255, 143, 6)
-  );
+  background-image:  linear-gradient(to right, rgb(9, 77, 0), rgb(9, 229, 68), rgb(0, 255, 213));
 }
 .expense-sidebar-button {
-  background-image: linear-gradient(
-    to right,
-    rgb(206, 58, 8),
-    rgb(165, 45, 5),
-    rgb(187, 115, 0)
-  );
+  background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
   box-shadow: grey 5px 5px 5px;
 }
 
@@ -2003,7 +1965,7 @@ font-weight: bold;
   }
   .full-body {
     display: grid;
-    background-color: #ffffffb5;
+    background-color: #bdbcbc10;
     grid-template-columns: 58% 42%;
     width: 85%;
     margin-left: 12.9%;

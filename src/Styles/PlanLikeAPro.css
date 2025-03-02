@@ -1,11 +1,16 @@
 .plan-like-a-pro {
     padding: 20px;
     text-align: center;
-  }
+    background-color: rgb(245, 249, 251);
+
+position: relative;
+z-index: 100;  }
   
-  .plan-like-a-pro h2 {
-    margin-bottom: 10px;
-    font-size: 28px;
+  .plan-like-a-pro h1 {
+    padding: 2%;
+    
+    color: rgb(3, 16, 93);
+    font-weight: bold;
   }
   
   .plan-like-a-pro p {

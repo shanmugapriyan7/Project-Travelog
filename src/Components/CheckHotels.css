@@ -6,7 +6,7 @@
     justify-content: space-around;
     padding: 8% 5% 8% 5%;
    background-image: linear-gradient(
-    rgb(116, 116, 116), grey);
+    rgb(255, 255, 255), rgb(255, 255, 255));
 }
 
 .hotel-card {
@@ -18,7 +18,7 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    background-color: aliceblue;
+    background-color: rgb(203, 221, 237);
 }
 
 .hotel-image {

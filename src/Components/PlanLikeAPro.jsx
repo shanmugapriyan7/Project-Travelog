@@ -22,7 +22,7 @@ const plansData = [
 const PlanLikeAPro = () => {
   return (
     <div className="plan-like-a-pro">
-      <h2>Plan like a Pro</h2>
+      <h1>Plan like a Pro</h1>
       <p>Unlock premium features like offline access, unlimited attachments, flight deals, export to Google maps, and <a href="#">much more</a></p>
       <div className="plans-wrapper">
         <div className="plans-grid">

@@ -53,7 +53,7 @@
   
   .button-container {
     margin-left: 10%;
-    margin-top: 10%;
+   
   }
   
   .btn {
@@ -79,10 +79,10 @@
     margin-top: 20%;
     height: 0;
     width: 100%;
-    margin-right: 100px;
+    margin-left: 100px;
     border-top: 300px solid  rgba(255, 255, 255, 0.56);
     border-left: 100px solid rgba(255, 255, 255, 0);
-    margin-left: 10%;
+
   }
   .iome h1{
     position: absolute;

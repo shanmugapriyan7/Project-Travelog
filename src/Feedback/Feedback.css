@@ -1,0 +1,47 @@
+.feedback-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: max-content;
+    padding: 3%;
+    gap: 10px; /* Space between arrows and cards */
+    width: 100%;
+    background-color: aqua;
+}
+
+.feedback-slider-container {
+    width: 80%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.feedback-slider {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.feedback-card {
+    min-width: 250px;
+    height: 200px;
+    margin: 0 10px;
+    background-color: #fa4300;
+    border-radius: 8px;
+    /* Additional card styling */
+}
+
+.feedback-arrow {
+    background-color: rgb(58, 254, 14);
+    color: #fdfdfd;
+    border: none;
+    padding: 15px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+
+/* Media query adjustments */
+@media screen and (max-width: 768px) {
+    .feedback-card {
+        min-width: 200px;
+    }
+}

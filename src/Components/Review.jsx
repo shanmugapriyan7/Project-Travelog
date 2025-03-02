@@ -34,7 +34,7 @@ const testimonials = [
 const Review = () => {
   return (
     <section className="testimonials" id="review">
-      <h2>What travelers are raving about</h2>
+      <h1>What travelers are raving about</h1>
       <div className="testimonials-container">
         {testimonials.map((testimonial) => (
           <div key={testimonial.id} className="testimonial-card">

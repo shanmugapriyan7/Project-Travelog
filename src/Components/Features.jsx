@@ -37,7 +37,7 @@ const featuresData = [
 const Features = () => {
   return (
     <div className="features" id='services'>
-      <h2>Features to replace all your other tools</h2>
+      <h1>Features to replace all your other tools</h1>
       <div className="features-wrapper">
         <div className="features-grid">
           {featuresData.map((feature, index) => (

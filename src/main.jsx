@@ -1,13 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
-import "./index.css";
-
-
-import LinkRouter from "./LinkRouter.jsx";
+import LinkRouter from "./LinkRouter";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <LinkRouter />
+    <LinkRouter/>
   </React.StrictMode>
 );

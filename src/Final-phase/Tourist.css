@@ -3,7 +3,7 @@
   width: 80%;
   margin: 0 auto;
 
-  
+
 }
 .explore-places{
   padding-top: 5%;
@@ -60,11 +60,11 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 
 .prev-button, .next-button {
   position: absolute;
-  top: 50%;
+  top: 30%;
   transform: translateY(-50%);
   width: 40px;
   height: 40px;
-  background-color: #dcdbdb;
+  background-image:  linear-gradient(to right, rgb(0, 26, 82), rgb(9, 123, 229), rgb(0, 255, 213));
   color: #03001b;
   border: none;
   border-radius: 50%;
@@ -72,15 +72,15 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .prev-button {
-  left: -60px;
+  left: -1%;
 }
 
 .next-button {
-  right: -50px;
+  right: -1%;
 }
 
 .prev-button:hover, .next-button:hover {
@@ -102,5 +102,7 @@ font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1000;
+  z-index: 10;
 }
+
+

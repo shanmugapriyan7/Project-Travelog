@@ -1,0 +1,191 @@
+/* Existing styles remain unchanged */
+
+.Res-body {
+    margin: 5% 1%;
+    border-bottom: grey 2px solid;
+    padding-bottom: 10%;
+    padding-Top: 5%;
+    width: 90%;
+}
+
+.Res-heading-container {
+    display: flex;
+    align-items: center;
+    position: relative; /* Ensure that the delete button can be positioned absolutely */
+}
+
+.Res-heading {
+    width: fit-content;
+    height: 30px; 
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 0;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.Res-heading-text {
+    color: grey;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.Res-heading-container:hover .edit-button {
+    opacity: 1; 
+}
+
+.Res-text {
+    width: 90%;
+    height: fit-content;
+    font-size: 1em;
+    padding: 10px;
+    border: none;
+    background-color: rgba(235, 233, 233, 0.755);
+    border-radius: 4px;
+    outline: none;
+    padding: 1%;
+    resize: vertical;
+}
+
+.Res-text input {
+    border-radius: 20px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+    .Res-heading {
+        font-size: 1.1em;
+        height: 25px; /* Adjust height for smaller screens */
+    }
+
+    .Res-text {
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .Res-heading {
+        font-size: 1em;
+        height: 20px; /* Adjust height for smaller screens */
+    }
+
+    .Res-text {
+        height: 120px;
+    }
+}
+
+/* New styles for Res-content-list and related elements */
+.Res-content-list {
+    margin-top: 20px;
+}
+
+.res-item {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+}
+
+.res-content {
+    flex: 1;
+}
+
+.res-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.res-name {
+    font-size: 1.2em;
+}
+
+.res-index {
+    font-weight: bold;
+}
+
+.res-details {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.place-image-container {
+    margin-top: 10px;
+}
+
+.place-image {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.remove-res-button {
+    margin-left: 16px;
+}
+
+.remove-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.res-add-item {
+    margin-top: 20px;
+}
+
+.res-add-item input {
+    padding: 8px;
+    border-radius: 10px;
+    margin-right: 8px;
+    background-color: rgb(235, 231, 231);
+    outline: none;
+    border: none;
+    width: calc(100% - 8px); 
+}
+
+.add-list-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background-image: linear-gradient(
+        to right,
+        rgb(148, 27, 0),
+        rgb(171, 74, 13),
+        rgb(255, 155, 6)
+      );
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.add-list-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-list-button {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #bcb9b9; /* Red color for delete button */
+}
+
+.delete-list-button:hover {
+    color: #c82333; /* Darker red color on hover */
+}

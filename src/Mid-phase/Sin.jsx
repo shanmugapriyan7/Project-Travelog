@@ -1,11 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios"; // Import axios for making API requests
 import "../Mid-phase/Sin.css";
-import { NavLink, useNavigate } from "react-router-dom";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: "", password: "", api: "" });
+  const [message, setMessage] = useState(""); // To display success/error messages
   const navigate = useNavigate();
 
   const validateForm = () => {
@@ -32,75 +34,59 @@ const SignInPage = () => {
     return valid;
   };
 
-  const handleEmailChange = (e) => {
-    const value = e.target.value;
-    setEmail(value);
-
-    if (/\S+@\S+\.\S+/.test(value)) {
-      setErrors((prevErrors) => ({ ...prevErrors, email: "" }));
-    } else if (!value) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Email is required",
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        email: "Email address is invalid",
-      }));
-    }
-  };
-
-  const handlePasswordChange = (e) => {
-    const value = e.target.value;
-    setPassword(value);
-
-    if (value.length >= 8) {
-      setErrors((prevErrors) => ({ ...prevErrors, password: "" }));
-    } else if (!value) {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Password is required",
-      }));
-    } else {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        password: "Password must be at least 8 characters long",
-      }));
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (validateForm()) {
       try {
-        const response = await fetch("http://localhost:3006/api/user");
-        const data = await response.json();
+        // Step 1: Send login credentials to the API
+        const loginResponse = await fetch("http://localhost:3006/api/ua/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        });
 
-        const user = data.find(
-          (user) => user.mail === email && user.password === password
-        );
+        const loginData = await loginResponse.json();
 
-        if (user) {
-          alert("Sign-in successful");
-          navigate("/");
-        } else {
+        if (!loginResponse.ok) {
           setErrors((prevErrors) => ({
             ...prevErrors,
-            api: "Invalid email or password",
+            api: loginData.message || "Invalid email or password",
           }));
+          return;
         }
+
+        // Step 2: Store the user's data in sessionStorage
+        sessionStorage.setItem("user", JSON.stringify(loginData)); // Store user info (including name)
+
+        // Step 3: Update the current status with the loginId (email) and default itineraryId
+        const currentStatusResponse = await axios.put(
+          "http://localhost:3006/api/current/current-status",
+          {
+            loginId: email,  // Use email as loginId
+            itineraryId: "2",  // Default itineraryId
+            place: "japan", // Default place
+            startDate: new Date(), // Default startDate as current date
+            endDate: new Date(),   // Default endDate as current date
+          }
+        );
+
+        // Handle successful current status update
+        setMessage(currentStatusResponse.data.message);
+
+        // Redirect to the home page after successful login
+        navigate("/home");
       } catch (error) {
-        console.error("Error fetching user data:", error);
         setErrors((prevErrors) => ({
           ...prevErrors,
-          api: "An error occurred while signing in",
+          api: "An error occurred while signing in or updating current status.",
         }));
+        console.error("Error:", error);
       }
     } else {
-      alert(
-        "Please ensure your email is valid and your password is at least 8 characters long"
-      );
+      alert("Please ensure your email is valid and your password is at least 8 characters long.");
     }
   };
 
@@ -108,29 +94,25 @@ const SignInPage = () => {
     <div className="sin-body">
       <div className="sign-in-page">
         <div className="sign-in-container">
-          <div className="sign-in-header">
-            <h1>Welcome Back</h1>
-            <p>Sign in to discover and plan your next adventure!</p>
-          </div>
+          <h1>Welcome Back</h1>
+          <p>Sign in to discover and plan your next adventure!</p>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email">Email:</label>
+              <label>Email:</label>
               <input
                 type="email"
-                id="email"
                 value={email}
-                onChange={handleEmailChange}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
               />
               {errors.email && <p className="error">{errors.email}</p>}
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password:</label>
+              <label>Password:</label>
               <input
                 type="password"
-                id="password"
                 value={password}
-                onChange={handlePasswordChange}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your password"
               />
               {errors.password && <p className="error">{errors.password}</p>}
@@ -140,13 +122,9 @@ const SignInPage = () => {
               <button type="submit" className="sign-in-button1">
                 Sign In
               </button>
-              <NavLink to="/Signup">
-                <button type="button" className="forgot-password-button">
-                  Create Account
-                </button>
-              </NavLink>
             </div>
           </form>
+          {message && <p>{message}</p>} {/* Display message after submission */}
         </div>
       </div>
     </div>
