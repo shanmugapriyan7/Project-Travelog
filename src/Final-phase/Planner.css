@@ -235,7 +235,7 @@
     padding-bottom: 5px;
     font-weight: bold;
     cursor: pointer;
-    
+    background-image:  linear-gradient(to right, rgb(0, 27, 47), rgb(9, 137, 229), rgb(0, 242, 255));
   }
   .navbutton1 button {
     height: 30px;
